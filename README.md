@@ -86,6 +86,17 @@ echo "extension=mailparse.so" | sudo tee /etc/php/7.1/mods-available/mailparse.i
 sudo phpenmod mailparse
 ```
 
+#### From a Php docker image
+
+```
+# Example for an alpine distribution
+RUN apk update && apk add g++ autoconf make re2c && \
+    pecl install mailparse && \
+    docker-php-ext-enable mailparse && \
+    apk del g++ autoconf make re2c
+    
+```
+
 #### Windows
 You need to download mailparse DLL from http://pecl.php.net/package/mailparse and add the line "extension=php_mailparse.dll" to php.ini accordingly.
 
